@@ -11,11 +11,10 @@ ENTRYPOINT ["/sbin/tini", "--"]
 FROM base as build
 
 COPY package*.json ./
-RUN npm ci
-
 COPY src src
 COPY tsconfig.json .
 
+RUN npm ci
 RUN npm run build
 
 # Final Image
