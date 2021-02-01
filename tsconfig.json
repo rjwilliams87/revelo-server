@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "./build",
+    "removeComments": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "allowJs": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/*", "src/**/*.test.ts", "src/**/*.spec.ts", "lib", "build", "__mocks__"]
+}
