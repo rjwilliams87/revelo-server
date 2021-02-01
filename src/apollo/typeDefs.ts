@@ -1,11 +1,23 @@
 import { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
-  # type Record returns all possible values for ip or domain
-  type Record {
-    dns: DNSRecord!
-    ip: IPRecord!
-    whois: WHOISRecord!
+  # DNSRecord returns data specific to a domain name
+  type DNSRecord {
+    createdDate: String!
+    updatedDate: String!
+    domainName: String!
+    dnsRecords: [DomainRecord]!
+    rawData: String!
+  }
+
+  type DomainRecord {
+    type: Int!
+    dnsType: String!
+    name: String!
+    ttl: Int!
+    rRsetType: Int!
+    rawText: String!
+    strings: [String]!
   }
 
   # type IPRecord returns data specific to an IP address
@@ -15,7 +27,7 @@ export const typeDefs = gql`
     ip: String!
     isp: String!
     location: IPGeoLocation!
-    rawdata: String!
+    rawData: String!
   }
 
   type IPGeoLocation {
@@ -27,27 +39,6 @@ export const typeDefs = gql`
     postalCode: String!
     timezone: String!
     geonameId: ID!
-  }
-
-  # DNSRecord returns data specific to a domain name
-  type DNSRecord {
-    createdDate: String!
-    updatedDate: String!
-    domainName: String!
-    dnsTypes: String!
-    dnsRecord: [DomainRecord]!
-    rawdata: String!
-    types: [Number]!
-  }
-
-  type DomainRecord {
-    type: Number!
-    dnsType: String!
-    name: String!
-    ttl: Number!
-    rRsetType: Number!
-    rawText: String!
-    strings: [String]!
   }
 
   # type WHOISRecord returns WHOIS data for IP or domain name
@@ -66,7 +57,7 @@ export const typeDefs = gql`
     domainNameExt: String!
     estimatedDomainAge: Int!
     ips: [String]!
-    rawdata: String!
+    rawData: String!
   }
 
   type WHOISContact {
@@ -83,13 +74,11 @@ export const typeDefs = gql`
     ips: [String]!
   }
 
-  extend type Query {
-    DNSRecord(domainRef: String!): DNSRecord!
+  type Query {
+    dnsRecord(domain: String!): DNSRecord!
 
-    IPRecord(ipRef: String!): IPRecord!
+    ipRecord(ip: String!): IPRecord!
 
-    Record(type: String!, recordRef: String!): Record!
-
-    WHOISRecord(recordRef: String!): WHOISRecord!
+    whoisRecord(domain: String!): WHOISRecord!
   }
 `;
