@@ -9,6 +9,8 @@
     "docker:build": "docker build -f Dockerfile -t revelo-server:dev .",
     "docker:run": "docker run --publish 4000:4000 revelo-server:dev",
     "start": "npm run docker:build && npm run docker:run",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
