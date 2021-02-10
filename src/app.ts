@@ -15,6 +15,7 @@ export default async function main({
   const server = await createApolloServer();
 
   const app = express();
+
   app.use(cors());
 
   server.applyMiddleware({ app, path });

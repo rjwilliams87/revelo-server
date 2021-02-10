@@ -9,7 +9,7 @@ export default class IPDataSource extends RESTDataSource {
     this.baseURL = WHOIS_IP_GEO_URL;
   }
 
-  public async fetchIpData(ip: string): Promise<Record<string, any>> {
+  public async fetchIpData(ip: string): Promise<Record<string, unknown>> {
     const endpoint = `v1?apiKey=${WHOIS_API_KEY}&ipAddress=${ip}&outputFormat=JSON`;
     const result = await this.get(endpoint);
     return result;

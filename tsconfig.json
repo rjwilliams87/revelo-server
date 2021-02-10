@@ -15,5 +15,13 @@
     "allowJs": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/__tests__/*", "src/**/*.test.ts", "src/**/*.spec.ts", "lib", "build", "__mocks__"]
+  "exclude": [
+    "node_modules",
+    "**/__tests__/*",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "lib",
+    "build",
+    "__mocks__"
+  ]
 }
