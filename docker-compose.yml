@@ -1,0 +1,9 @@
+# !! Local Development Only !!
+version: '3.9'
+services:
+  revelo-server:
+    build: .
+    env_file: .env
+
+    ports:
+      - 4000:4000

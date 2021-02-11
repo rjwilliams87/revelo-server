@@ -1,7 +1,32 @@
-import { app } from './server';
+import 'dotenv/config';
+import { ApolloError } from 'apollo-server-express';
 
-const PORT = process.env.PORT || '4000';
+import main from './app';
 
-app.listen({ port: PORT }, () => {
-  console.log('Listening on port 4000');
-});
+(async function boot() {
+  try {
+    await (async function boot_servers() {
+      const { app } = await main();
+
+      try {
+        await (async function boot_graphql() {
+          await app.listen(process.env.PORT);
+          console.log('listening on port', process.env.PORT);
+        })();
+      } catch (err) {
+        console.log(err);
+        throw new ApolloError(
+          'there was a problem booting this graphql endpoint. this might indicate that the server is not able to listen on this port.',
+        );
+      }
+    })();
+  } catch (ex) {
+    if (ex instanceof ApolloError) {
+      console.log(ex);
+      return;
+    }
+    const { message, stack } = ex;
+    console.log({ message, stack });
+    process.exit(1);
+  }
+})();
