@@ -67,7 +67,6 @@ export const typeDefs = gql`
   }
 
   type WhoIsNameServer {
-    rawText: String!
     hostNames: [String]!
     ips: [String]!
   }
