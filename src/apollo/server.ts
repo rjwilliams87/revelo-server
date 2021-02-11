@@ -1,15 +1,13 @@
 import { ApolloServer } from 'apollo-server-express';
 
-import { createAppDataSources as dataSources } from './datasources';
+import { createAppDataSources } from './datasources';
 import { createAppResolvers } from './resolvers';
 import { typeDefs } from './typeDefs';
 
 export const createApolloServer = (): ApolloServer => {
-  const resolvers = createAppResolvers();
-
   const server = new ApolloServer({
-    dataSources,
-    resolvers,
+    dataSources: createAppDataSources,
+    resolvers: createAppResolvers(),
     typeDefs,
   });
 

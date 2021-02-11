@@ -2,21 +2,20 @@ import { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
   # DNSRecord returns data specific to a domain name
-  type DNSRecord {
+  type DnsRecord {
     createdDate: String!
     updatedDate: String!
     domainName: String!
-    dnsRecords: [DomainRecord]!
+    dnsRecords: [DnsRecordDetails]!
     rawData: String!
   }
 
-  type DomainRecord {
+  type DnsRecordDetails {
     type: Int!
     dnsType: String!
     name: String!
     ttl: Int!
     rRsetType: Int!
-    rawText: String!
     strings: [String]!
   }
 
@@ -41,16 +40,16 @@ export const typeDefs = gql`
     geonameId: ID!
   }
 
-  # type WHOISRecord returns WHOIS data for IP or domain name
-  type WHOISRecord {
+  # type WhoIsRecord returns WhoIs data for IP or domain name
+  type WhoIsRecord {
     createdDate: String!
     updatedDate: String!
     expiresDate: String!
-    registrant: WHOISContact!
-    administrativeContact: WHOISContact!
-    technicalContact: WHOISContact!
+    registrant: WhoIsContact!
+    administrativeContact: WhoIsContact!
+    technicalContact: WhoIsContact!
     domainName: String!
-    nameServers: WHOISNameServer!
+    nameServers: WhoIsNameServer!
     registrarName: String!
     domainAvailability: String!
     contactEmail: String!
@@ -60,25 +59,24 @@ export const typeDefs = gql`
     rawData: String!
   }
 
-  type WHOISContact {
+  type WhoIsContact {
     organization: String!
     state: String!
     country: String!
     countryCode: String!
-    rawText: String!
   }
 
-  type WHOISNameServer {
+  type WhoIsNameServer {
     rawText: String!
     hostNames: [String]!
     ips: [String]!
   }
 
   type Query {
-    dnsRecord(domain: String!): DNSRecord!
+    dnsRecord(domain: String!): DnsRecord!
 
     ipRecord(ip: String!): IPRecord!
 
-    whoisRecord(domain: String!): WHOISRecord!
+    whoisRecord(domain: String!): WhoIsRecord!
   }
 `;

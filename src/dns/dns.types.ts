@@ -1,19 +1,18 @@
 export type DomainName = string;
 
-export type DomainRecord = {
+export type DnsRecordDetails = {
   type: number;
   dnsType: string;
   name: string;
   ttl: number;
   rRsetType: number;
-  rawText: string;
   strings: [string];
 };
 
-export type DNSRecord = {
+export type DnsRecord = {
   createdDate: string;
   updatedDate: string;
   domainName: string;
-  dnsRecords: [DomainRecord];
+  dnsRecords: DnsRecordDetails[];
   rawData: string;
 };

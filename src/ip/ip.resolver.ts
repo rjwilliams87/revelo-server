@@ -1,7 +1,7 @@
 import { ApolloError } from 'apollo-server-express';
 import { applySpec, identity, pipe, propOr } from 'ramda';
 
-import { AppContext } from '../apollo/types';
+import { AppContext } from '../apollo/apollo.types';
 import { IP, IPGeoLocation, IPRecord } from './ip.types';
 
 const geoSpec = applySpec<IPGeoLocation>({
