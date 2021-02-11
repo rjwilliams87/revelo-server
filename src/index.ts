@@ -6,7 +6,7 @@ import main from './app';
 (async function boot() {
   try {
     await (async function boot_servers() {
-      const { app } = await main({ path: '/graphql' });
+      const { app } = await main();
 
       try {
         await (async function boot_graphql() {

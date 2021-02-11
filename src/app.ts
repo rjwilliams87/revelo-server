@@ -1,24 +1,23 @@
 import { ApolloServer } from 'apollo-server-express';
 import cors from 'cors';
-import express from 'express';
+import express, { Application } from 'express';
 
 import { createApolloServer } from './apollo/server';
 
-export default async function main({
-  path,
-}: {
-  path: string;
-}): Promise<{
-  app: any;
-  server: ApolloServer;
-}> {
-  const server = await createApolloServer();
+const API_PATH = '/graphql';
 
-  const app = express();
+export default async function main(
+  path: string = API_PATH,
+): Promise<{
+  app: Application;
+}> {
+  const server: ApolloServer = await createApolloServer();
+
+  const app: Application = express();
 
   app.use(cors());
 
   server.applyMiddleware({ app, path });
 
-  return { app, server };
+  return { app };
 }
