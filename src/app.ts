@@ -5,7 +5,6 @@ import express, { Application } from 'express';
 import { createApolloServer } from './apollo/server';
 
 const API_PATH = '/graphql';
-
 export default async function main(
   path: string = API_PATH,
 ): Promise<{
