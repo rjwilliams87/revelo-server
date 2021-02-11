@@ -1,7 +1,7 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
 const WHOIS_API_KEY = process.env.WHOIS_API_KEY;
-const WHOIS_IP_GEO_URL = process.env.WHOIS_IP_GEO_URL;
+const WHOIS_IP_GEO_URL = 'https://ip-geolocation.whoisxmlapi.com/api';
 
 export default class IPDataSource extends RESTDataSource {
   constructor() {
