@@ -1,9 +1,9 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
 const WHOIS_API_KEY = process.env.WHOIS_API_KEY;
-const WHOIS_API_URL = process.env.WHOIS_API_URL;
-const WHOIS_SERVICE_ENDPOINT = process.env.WHOIS_SERVICE_ENDPOINT;
-const WHOIS_DNS_ENDPOINT = process.env.WHOIS_DNS_ENDPOINT;
+const WHOIS_API_URL = 'https://www.whoisxmlapi.com/whoisserver';
+const WHOIS_SERVICE_ENDPOINT = 'WhoisService';
+const WHOIS_DNS_ENDPOINT = 'DNSService';
 
 export default class WHOISDataSource extends RESTDataSource {
   constructor() {
